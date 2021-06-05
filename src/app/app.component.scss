@@ -1,0 +1,11 @@
+.header {
+  height: 105px;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+}
+
+.main {
+  height: calc(100vh - 105px);
+}

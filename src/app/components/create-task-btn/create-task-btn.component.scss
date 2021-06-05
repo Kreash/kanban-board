@@ -1,0 +1,43 @@
+.create-task-btn {
+
+
+  border-radius: 39px;
+  background-color: #00BCCA;
+  display: flex;
+  align-items: center;
+  padding: 10px 25px 10px 12px;
+
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.create-task-btn__icon {
+  height: 17px;
+  width: 17px;
+
+  position: relative;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  margin-right: 32px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+
+    height: 3.4px;
+    width: 17px;
+    background-color: white;
+  }
+
+  &::before {
+
+  }
+
+  &::after {
+    transform: rotate(90deg);
+  }
+}
