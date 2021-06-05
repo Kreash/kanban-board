@@ -74,11 +74,10 @@
   }
 
   &__card-wrap {
-    margin-right: 30px;
-    margin-bottom: 24px;
-
     height: max-content;
     width: max-content;
+
+
   }
 
 }
@@ -109,3 +108,8 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 // ===== drag-and-drop styles end =====
+
+:host ::ng-deep .card {
+  margin-right: 30px;
+  margin-bottom: 24px;
+}
