@@ -1,27 +1,79 @@
 <div class="board__columns">
   <div class="board__column board__column_new">
     <div class="board__column-head">Новые</div>
-    <div class="board__column-body">
-      <div class="board__card-wrap">
-        <app-card></app-card>
+
+
+
+    <div class="board__column-body"
+    cdkDropList
+    #newList="cdkDropList"
+    [cdkDropListData]="new"
+    [cdkDropListConnectedTo]="[inProgressList]"
+    (cdkDropListDropped)="drop($event)">
+
+      <div class="board__card-wrap" *ngFor="let item of new" cdkDrag>
+        <app-card [cardObject] = 'item'></app-card>
       </div>
-      <div class="board__card-wrap">
-        <app-card></app-card>
-      </div>
-      <div class="board__card-wrap">
-        <app-card></app-card>
-      </div>
+
     </div>
+
+
+
+
+
+    <!-- <div class="board__column-body">
+      <div class="board__card-wrap">
+        <app-card></app-card>
+      </div>
+      <div class="board__card-wrap">
+        <app-card></app-card>
+      </div>
+      <div class="board__card-wrap">
+        <app-card></app-card>
+      </div>
+    </div> -->
+
   </div>
   <div class="board__column board__column_in-progress">
     <div class="board__column-head">Выполняются</div>
-    <div class="board__column-body">
 
-    </div>
+
+      <div class="board__column-body"
+      cdkDropList
+      #inProgressList="cdkDropList"
+      [cdkDropListData]="inProgress"
+      [cdkDropListConnectedTo]="[doneList]"
+      (cdkDropListDropped)="drop($event)">
+
+        <div class="board__card-wrap" *ngFor="let item of inProgress" cdkDrag>
+          <app-card [cardObject] = 'item'></app-card>
+        </div>
+
+      </div>
+
+
+
   </div>
   <div class="board__column board__column_done">
     <div class="board__column-head">Готовы</div>
     <div class="board__column-body">
+
+
+      <div class="board__column-body"
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      (cdkDropListDropped)="drop($event)">
+
+        <div class="board__card-wrap" *ngFor="let item of done" cdkDrag>
+          <app-card [cardObject] = 'item'></app-card>
+        </div>
+
+      </div>
+
+
+
+
 
     </div>
   </div>
