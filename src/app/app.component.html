@@ -7,3 +7,8 @@
 <main class="main">
   <app-board></app-board>
 </main>
+
+<div class="modal-wrap" *ngIf="showModal">
+  <div class="bg-grey"></div>
+  <app-card-modal class="modal-container" [modalOptions] = 'modalOptions'></app-card-modal>
+</div>

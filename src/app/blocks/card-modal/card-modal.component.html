@@ -1,0 +1,41 @@
+<div class="card-modal">
+
+  <div class="card-modal__head card-modal__head_{{modalOptions.status}}">
+    Новая задача
+
+    <span class="card-modal__exit-icon"></span>
+  </div>
+
+
+  <div class="card-modal__main">
+
+    <div class="card-modal__field card-modal__field_title">
+      <label class="card-modal__label" for="modal-title-input">
+        Наименование
+      </label>
+      <input id="modal-title-input" type="text">
+      <span class="card-modal__title-counter">0\64</span>
+    </div>
+
+    <div class="card-modal__field card-modal__field_description">
+      <label class="card-modal__label" for="modal-description-textarea">
+        Описание
+      </label>
+      <textarea name="" id="modal-description-textarea" cols="30" rows="10"></textarea>
+    </div>
+
+    <div class="card-modal__field card-modal__field_status">
+      <label class="card-modal__label" for="modal-status-select">
+        Состояние задачи
+      </label>
+      <app-select></app-select>
+    </div>
+
+
+  </div>
+
+
+
+
+
+</div>

@@ -9,3 +9,36 @@
 .main {
   min-height: calc(100vh - 105px);
 }
+
+.modal-wrap {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+.bg-grey {
+  // position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+
+  background: #000000;
+  mix-blend-mode: darken;
+  opacity: 0.6;
+  z-index: 5;
+}
+
+.modal-container {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

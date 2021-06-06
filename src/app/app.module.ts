@@ -7,13 +7,17 @@ import { CreateTaskBtnComponent } from './components/create-task-btn/create-task
 import { BoardComponent } from './blocks/board/board.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { CardModalComponent } from './blocks/card-modal/card-modal.component';
+import { SelectComponent } from './components/select/select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
     CreateTaskBtnComponent,
-    BoardComponent
+    BoardComponent,
+    CardModalComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,29 @@
 import { Component } from '@angular/core';
 
+export interface ModalOptions {
+  status: string,
+  title: string,
+  description: string
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'kanban-board';
+  showModal = true;
+
+  modalOptions: ModalOptions = {
+    status: 'new',
+    title: '',
+    description: '',
+  }
+
 }
+
+
+
 
 if (typeof Worker !== 'undefined') {
   // Create a new

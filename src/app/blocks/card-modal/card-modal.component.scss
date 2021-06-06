@@ -1,0 +1,107 @@
+@import '/src/gui.scss';
+
+.card-modal {
+  $self: &;
+  z-index: 10;
+
+  height: 513px;
+  width: 692px;
+  background: #FEFEFF;
+  box-shadow: 0px 2px 5px rgba(155, 166, 178, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+
+  &__head {
+    height: 55px;
+    padding: 0 35px 0 21px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+
+  &__head_new {
+    background-color: $yellow;
+  }
+  &__head_in-progress {
+    background-color: $red;
+  }
+  &__head_done {
+    background-color: $green;
+  }
+
+  &__exit-icon {
+    height: 22px;
+    width: 22px;
+    cursor: pointer;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.5 0.5L16 16' stroke='black'/%3E%3Cpath d='M0.5 16L16 0.499999' stroke='black'/%3E%3C/svg%3E%0A");
+  }
+
+
+
+  &__main {
+    padding: 14px 28px 21px 21px;
+
+  }
+
+  &__field {
+    width: 100%;
+
+    input,
+    textarea {
+      width: 100%;
+
+      background: #FFFFFF;
+      border: 1px solid #9BA6B2;
+      box-sizing: border-box;
+
+      margin-top: 10px;
+    }
+
+    input {
+      height: 44px;
+      margin-bottom: 27px;
+    }
+
+    textarea {
+      height: 110px;
+      margin-bottom: 22px;
+
+      resize: none;
+    }
+
+
+    &_title {
+      position: relative;
+    }
+  }
+
+
+  &__title-counter {
+    position: absolute;
+    right: 10px;
+    bottom: 37px;
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #9BA6B2;
+  }
+
+
+  &__label {
+    display: block;
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+}

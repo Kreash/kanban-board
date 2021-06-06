@@ -17,6 +17,7 @@
     &:not(:last-child) {
       border-right: 1px solid #DFDFDF;
     }
+
   }
 
   &__column_new {
@@ -70,7 +71,8 @@
     flex-wrap: wrap;
     align-content: flex-start;
 
-
+    height: calc(100vh - (105px + 51px));
+    overflow-y: auto;
   }
 
   &__card-wrap {

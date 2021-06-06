@@ -49,6 +49,7 @@ $kanban-board-theme: mat.define-light-theme((
 
 body {
   background-color: #F5F8FA;
+  overflow-y: hidden
 }
 
 html, body { height: 100%; }
