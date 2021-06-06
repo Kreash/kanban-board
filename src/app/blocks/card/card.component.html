@@ -1,11 +1,16 @@
 <div class="card card_{{cardObject.status}}" cdkDrag>
   <div class="card__head">
-    <button class="card__btn card__btn_delete" *ngIf='cardObject.status === "new"'></button>
+    <button class="card__btn card__btn_delete"
+      *ngIf="cardObject.status === 'new'"
+      (click)="emitCLick('delete')">
+    </button>
     <div class="card__drag-field" cdkDragHandle></div>
     <button class="card__btn card__btn_edit"
-    *ngIf='cardObject.status === "new" || cardObject.status === "in-progress"'></button>
+    *ngIf='cardObject.status === "new" || cardObject.status === "in-progress"'
+    (click)="emitCLick('edit')"></button>
     <button class="card__btn card__btn_show"
-    *ngIf='cardObject.status === "done"'></button>
+    *ngIf='cardObject.status === "done"'
+    (click)="emitCLick('show')"></button>
   </div>
   <div class="card__main">
     <div class="card__title">

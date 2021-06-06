@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CardObject } from '../board/board.component'
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
@@ -13,14 +13,21 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 export class CardComponent implements OnInit {
 
   @Input() cardObject: CardObject;
+  @Output() cardEvent = new EventEmitter();
 
   constructor() {
     this.cardObject = {
-      title: ''
+      title: '',
+      id: 0
     }
    }
 
   ngOnInit(): void {
   }
+
+  emitCLick(str: string) {
+    this.cardEvent.emit({action: str, id: this.cardObject.id});
+  }
+
 
 }

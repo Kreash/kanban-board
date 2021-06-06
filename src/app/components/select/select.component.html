@@ -1,1 +1,14 @@
-<p>select works!</p>
+<div class="select {{show ? 'select_active' : ''}}">
+  <div class="select__field" (click)='showOptions()'>
+    <div class="select__selected-value">
+      {{selectedValue}}
+    </div>
+    <span class="select__show-icon"></span>
+  </div>
+
+  <div class="select__options">
+    <div class="select__option" *ngFor="let optionTitle of optionsList" (click)='clickOption($event)'>
+      {{optionTitle}}
+    </div>
+  </div>
+</div>

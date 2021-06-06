@@ -1,6 +1,6 @@
 <header class="header">
   <div class="header__wrap">
-    <app-create-task-btn></app-create-task-btn>
+    <app-create-task-btn (btnClick)='newTask()'></app-create-task-btn>
   </div>
 </header>
 
@@ -10,5 +10,7 @@
 
 <div class="modal-wrap" *ngIf="showModal">
   <div class="bg-grey"></div>
-  <app-card-modal class="modal-container" [modalOptions] = 'modalOptions'></app-card-modal>
+  <app-card-modal class="modal-container"
+  [modalOptions] = 'modalOptions' [action] = 'action'
+  (closeModal)='closeModal()' (saveModal)='saveModal($event)'></app-card-modal>
 </div>

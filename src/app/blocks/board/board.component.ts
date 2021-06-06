@@ -22,16 +22,21 @@ export class BoardComponent {
   new: CardObject[] = [
     {title: '111 card',
     description: 'Сложное описание задачи говорит о том, что верстка должна быть усложнена и …',
-    status: 'new'},
+    status: 'new',
+    id: 1},
     {title: '222 card',
-    description: 'Сложное описание задачи говорит о том, что верстка должна быть усложнена и …',status: 'new'},
+    description: 'Сложное описание задачи говорит о том, что верстка должна быть усложнена и …',status: 'new',
+    id: 2},
     {title: '333 card',
-    description: 'Сложное описание задачи говорит о том, что верстка должна быть усложнена и …',status: 'new'},
+    description: 'Сложное описание задачи говорит о том, что верстка должна быть усложнена и …',status: 'new',
+    id: 3},
     {title: '444 card',
-    description: 'Сложное описание задачи говорит о том, что верстка должна быть усложнена и …',status: 'new'},
+    description: 'Сложное описание задачи говорит о том, что верстка должна быть усложнена и …',status: 'new',
+    id: 4},
     {title: '555 card',
     description: 'Сложное описание задачи говорит о том, что верстка должна быть усложнена и …',
-    status: 'new'},
+    status: 'new',
+    id: 5},
   ];
 
   inProgress: CardObject[] = [
@@ -53,6 +58,7 @@ export class BoardComponent {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      // console.log(event.previousContainer.data[event.previousIndex].id)
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,

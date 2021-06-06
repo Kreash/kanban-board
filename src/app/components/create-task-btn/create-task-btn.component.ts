@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-create-task-btn',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTaskBtnComponent implements OnInit {
 
+  @Output() btnClick = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  emitCLick() {
+    this.btnClick.emit();
   }
 
 }

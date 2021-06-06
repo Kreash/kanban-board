@@ -49,7 +49,10 @@
 
   &__main {
     padding: 14px 28px 21px 21px;
+    height: calc(100% - 55px);
 
+    display: flex;
+    flex-direction: column;
   }
 
   &__field {
@@ -58,17 +61,19 @@
     input,
     textarea {
       width: 100%;
-
+      margin-top: 10px;
       background: #FFFFFF;
       border: 1px solid #9BA6B2;
       box-sizing: border-box;
 
-      margin-top: 10px;
+      font-size: 18px;
+      line-height: 22px;
     }
 
     input {
       height: 44px;
       margin-bottom: 27px;
+      padding: 12px 62px 10px 9px;
     }
 
     textarea {
@@ -76,6 +81,8 @@
       margin-bottom: 22px;
 
       resize: none;
+
+      padding: 10px 9px;
     }
 
 
@@ -103,5 +110,15 @@
     font-size: 18px;
     font-weight: 600;
     line-height: 22px;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+
+    & :not(:last-child) {
+      margin-right: 10px;
+    }
   }
 }

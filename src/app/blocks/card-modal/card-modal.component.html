@@ -1,9 +1,9 @@
 <div class="card-modal">
 
-  <div class="card-modal__head card-modal__head_{{modalOptions.status}}">
+  <div class="card-modal__head
+  {{modalOptions.status ? 'card-modal__head_' + modalOptions.status : 'card-modal__head_new'}}">
     Новая задача
-
-    <span class="card-modal__exit-icon"></span>
+    <span class="card-modal__exit-icon" (click)='close()'></span>
   </div>
 
 
@@ -13,29 +13,40 @@
       <label class="card-modal__label" for="modal-title-input">
         Наименование
       </label>
-      <input id="modal-title-input" type="text">
-      <span class="card-modal__title-counter">0\64</span>
+      <input id="modal-title-input" type="text"
+      [(ngModel)]='modalOptions.title' maxlength="64">
+      <span class="card-modal__title-counter">{{modalOptions.title.length}}\64</span>
     </div>
 
     <div class="card-modal__field card-modal__field_description">
       <label class="card-modal__label" for="modal-description-textarea">
         Описание
       </label>
-      <textarea name="" id="modal-description-textarea" cols="30" rows="10"></textarea>
+      <textarea name="" id="modal-description-textarea" cols="30" rows="10"
+      [(ngModel)]='modalOptions.description'></textarea>
     </div>
 
     <div class="card-modal__field card-modal__field_status">
       <label class="card-modal__label" for="modal-status-select">
         Состояние задачи
       </label>
-      <app-select></app-select>
+      <app-select
+        [optionsList]='selectOptions'
+        [disabled]='disabledSelect'
+        (selectedEvent) = 'changeStatus($event)'>
+      </app-select>
     </div>
 
 
+    <div class="card-modal__controls">
+      <app-btn-simple [theme]="'white'" (btnClick)='close()'>
+        Отменить
+      </app-btn-simple>
+      <app-btn-simple (btnClick)='save()'>
+        Сохранить
+      </app-btn-simple>
+    </div>
+
   </div>
-
-
-
-
 
 </div>

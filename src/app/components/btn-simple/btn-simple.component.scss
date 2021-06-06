@@ -1,0 +1,36 @@
+.btn-simple {
+
+
+  border-radius: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 25px;
+
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+
+
+  min-width: 163px;
+
+
+
+
+  &_primary {
+    background-color: #00BCCA;
+  }
+
+  &_white {
+    background-color: transparent;
+    color: #00BCCA;
+  }
+
+
+
+
+
+
+}
