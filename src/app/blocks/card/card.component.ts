@@ -32,8 +32,8 @@ export class CardComponent implements OnInit {
     } else {
       this.shortTitle = this.cardObject.title;
     }
-    if (this.cardObject.description.length > 86) {
-      this.shortDescription = this.cardObject.description.slice(0, 86) + '...'
+    if (this.cardObject.description.length > 75) {
+      this.shortDescription = this.cardObject.description.slice(0, 75) + '...'
     } else {
       this.shortDescription = this.cardObject.description;
     }
