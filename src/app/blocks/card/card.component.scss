@@ -3,7 +3,6 @@
 .card {
   $self: &;
 
-  // height: 188px;
   width: 182px;
   box-shadow: 0px 2px 2px rgba(155, 166, 178, 0.25);
   border-radius: 4px;
@@ -42,21 +41,12 @@
     cursor: grab;
   }
 
-
-
-
   &__main {
     height: 139px;
-
     background-color: white;
-
     padding: 14px 0 12px 11px;
-
-
     font-size: 14px;
   }
-
-
 
   &__title {
     font-weight: 600;
@@ -68,9 +58,8 @@
 
   &__description {
     margin-top: 5px;
-    font-weight: 400;
-
     padding-right: 16px;
+    font-weight: 400;
 
 
     overflow: hidden;
@@ -86,29 +75,22 @@
     }
   }
 
-
-
   &_new {
     #{$self}__head {
       background-color: $yellow;
     }
   }
-
   &_in-progress {
     #{$self}__head {
       background-color: $red;
     }
   }
-
   &_done {
     #{$self}__head {
       background-color: $green;
     }
   }
 }
-
-
-
 
 
 // ===== drag-and-drop styles =====

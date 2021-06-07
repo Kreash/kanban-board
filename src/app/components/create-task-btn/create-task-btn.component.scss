@@ -1,6 +1,4 @@
 .create-task-btn {
-
-
   border-radius: 39px;
   background-color: #00BCCA;
   display: flex;
@@ -32,11 +30,6 @@
     width: 17px;
     background-color: white;
   }
-
-  // &::before {
-
-  // }
-
   &::after {
     transform: rotate(90deg);
   }

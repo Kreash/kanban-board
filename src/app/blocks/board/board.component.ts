@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { CardObject } from '../../app.component';
 
-
-
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',

@@ -45,8 +45,6 @@
     background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.5 0.5L16 16' stroke='black'/%3E%3Cpath d='M0.5 16L16 0.499999' stroke='black'/%3E%3C/svg%3E%0A");
   }
 
-
-
   &__main {
     padding: 14px 28px 21px 21px;
     height: calc(100% - 55px);
@@ -89,12 +87,10 @@
       padding: 10px 9px;
     }
 
-
     &_title {
       position: relative;
     }
   }
-
 
   &__title-counter {
     position: absolute;
@@ -106,7 +102,6 @@
     line-height: 22px;
     color: #9BA6B2;
   }
-
 
   &__label {
     display: block;

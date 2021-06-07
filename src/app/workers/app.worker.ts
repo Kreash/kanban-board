@@ -12,17 +12,7 @@ addEventListener('message', ({ data }) => {
       const tasks = transaction.objectStore('tasks')
       const request = tasks.add(data.taskObject);
 
-      request.addEventListener('success', () => {
-
-        const transaction = db.transaction('tasks', 'readonly')
-        const tasks = transaction.objectStore('tasks')
-        const request = tasks.getAll()
-
-        request.addEventListener('success', (data) => {
-          const filtredTasks = filterTasks(request.result);
-          postMessage(filtredTasks);
-        })
-      })
+      getTasks(request, db);
     })
 
   // Если изменяем задачу
@@ -35,20 +25,8 @@ addEventListener('message', ({ data }) => {
       const tasks = transaction.objectStore('tasks')
       const request = tasks.put(data.taskObject);
 
-      request.addEventListener('success', () => {
-
-        const transaction = db.transaction('tasks', 'readonly')
-        const tasks = transaction.objectStore('tasks')
-        const request = tasks.getAll()
-
-        request.addEventListener('success', () => {
-          const filtredTasks = filterTasks(request.result);
-          postMessage(filtredTasks);
-        })
-      })
+      getTasks(request, db);
     })
-
-
 
   // Если изменяем только статус задачи
   } else if (data.evt === 'edit-status-task') {
@@ -66,17 +44,7 @@ addEventListener('message', ({ data }) => {
       const tasks = transaction.objectStore('tasks')
       const request = tasks.put(data.taskAndColumn.taskObject);
 
-      request.addEventListener('success', () => {
-
-        const transaction = db.transaction('tasks', 'readonly')
-        const tasks = transaction.objectStore('tasks')
-        const request = tasks.getAll()
-
-        request.addEventListener('success', () => {
-          const filtredTasks = filterTasks(request.result);
-          postMessage(filtredTasks);
-        })
-      })
+      getTasks(request, db);
     })
 
   // Если удаляем задачу
@@ -89,17 +57,7 @@ addEventListener('message', ({ data }) => {
       const tasks = transaction.objectStore('tasks')
       const request = tasks.delete(data.id);
 
-      request.addEventListener('success', () => {
-
-        const transaction = db.transaction('tasks', 'readonly')
-        const tasks = transaction.objectStore('tasks')
-        const request = tasks.getAll()
-
-        request.addEventListener('success', () => {
-          const filtredTasks = filterTasks(request.result);
-          postMessage(filtredTasks);
-        })
-      })
+      getTasks(request, db);
     })
 
   // Если читаем базу
@@ -122,13 +80,21 @@ addEventListener('message', ({ data }) => {
   } else {
     throw new Error('Такого действия нет!')
   }
-
-
-
-
 });
 
+function getTasks(request: IDBRequest, db: IDBDatabase) {
+  request.addEventListener('success', () => {
 
+    const transaction = db.transaction('tasks', 'readonly')
+    const tasks = transaction.objectStore('tasks')
+    const request = tasks.getAll()
+
+    request.addEventListener('success', () => {
+      const filtredTasks = filterTasks(request.result);
+      postMessage(filtredTasks);
+    })
+  })
+}
 
 function createDB() {
   const openRequest = indexedDB.open('MyBase');
@@ -157,7 +123,6 @@ interface Task {
 }
 
 function filterTasks(allTasks: Task[]) {
-
   const resultArr: (Task[])[] = [[],[],[]];
 
   allTasks.forEach((task: Task) => {
