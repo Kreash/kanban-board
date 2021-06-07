@@ -15,8 +15,7 @@ export class CardComponent implements OnInit {
   @Input() cardObject: CardObject;
   @Output() cardEvent = new EventEmitter();
 
-  shortTitle: string = '';
-  shortDescription: string = '';
+  // shortDescription: string = '';
 
   constructor() {
     this.cardObject = {
@@ -27,16 +26,15 @@ export class CardComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if (this.cardObject.title.length > 17) {
-      this.shortTitle = this.cardObject.title.slice(0, 17) + '...'
-    } else {
-      this.shortTitle = this.cardObject.title;
-    }
-    if (this.cardObject.description.length > 75) {
-      this.shortDescription = this.cardObject.description.slice(0, 75) + '...'
-    } else {
-      this.shortDescription = this.cardObject.description;
-    }
+    // Вариант обрезания многострочного текста
+    // Решение обрезания многострочного текста, через css ненадёжно,
+    // так как использует свойства не входящие в стандарт
+
+    // if (this.cardObject.description.length > 75) {
+    //   this.shortDescription = this.cardObject.description.slice(0, 75) + '...'
+    // } else {
+    //   this.shortDescription = this.cardObject.description;
+    // }
   }
 
   emitCLick(str: string) {
