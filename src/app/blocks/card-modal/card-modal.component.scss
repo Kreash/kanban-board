@@ -68,6 +68,10 @@
 
       font-size: 18px;
       line-height: 22px;
+
+      &:disabled {
+        background-color: #DFDFDF;
+      }
     }
 
     input {

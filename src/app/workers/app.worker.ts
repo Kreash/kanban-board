@@ -28,7 +28,25 @@ addEventListener('message', ({ data }) => {
   // Если изменяем задачу
   } else if (data.evt === 'edit-task') {
 
+    openRequest.addEventListener('success', () => {
+      const db = openRequest.result
 
+      const transaction = db.transaction('tasks', 'readwrite')
+      const tasks = transaction.objectStore('tasks')
+      const request = tasks.put(data.taskObject);
+
+      request.addEventListener('success', () => {
+
+        const transaction = db.transaction('tasks', 'readonly')
+        const tasks = transaction.objectStore('tasks')
+        const request = tasks.getAll()
+
+        request.addEventListener('success', () => {
+          const filtredTasks = filterTasks(request.result);
+          postMessage(filtredTasks);
+        })
+      })
+    })
 
 
 

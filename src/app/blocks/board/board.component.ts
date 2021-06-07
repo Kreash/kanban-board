@@ -17,6 +17,8 @@ export class BoardComponent {
   @Input() doneCards: CardObject[];
   @Output() changeStatusTask = new EventEmitter();
   @Output() deleteTask = new EventEmitter();
+  @Output() editTask = new EventEmitter();
+  @Output() showTask = new EventEmitter();
 
   constructor() {
     this.сardsArrs = [[{title: '111 card',
@@ -67,13 +69,13 @@ export class BoardComponent {
   }
 
 
-  cardEvent(evt: {action:string, id:number}) {
+  cardEvent(evt: {action:string, cardObject:CardObject}) {
     if (evt.action === 'delete') {
-      this.deleteTask.emit(evt.id)
+      this.deleteTask.emit(evt.cardObject.id)
     } else if (evt.action === 'edit') {
-
+      this.editTask.emit(evt)
     } else if(evt.action === 'show') {
-
+      this.showTask.emit(evt)
     }
 
 

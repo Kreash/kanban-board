@@ -15,18 +15,32 @@ export class CardComponent implements OnInit {
   @Input() cardObject: CardObject;
   @Output() cardEvent = new EventEmitter();
 
+  shortTitle: string = '';
+  shortDescription: string = '';
+
   constructor() {
     this.cardObject = {
       title: '',
       description: ''
     }
+
    }
 
   ngOnInit(): void {
+    if (this.cardObject.title.length > 17) {
+      this.shortTitle = this.cardObject.title.slice(0, 17) + '...'
+    } else {
+      this.shortTitle = this.cardObject.title;
+    }
+    if (this.cardObject.description.length > 86) {
+      this.shortDescription = this.cardObject.description.slice(0, 86) + '...'
+    } else {
+      this.shortDescription = this.cardObject.description;
+    }
   }
 
   emitCLick(str: string) {
-    this.cardEvent.emit({action: str, id: this.cardObject.id});
+    this.cardEvent.emit({action: str, cardObject: this.cardObject});
   }
 
 

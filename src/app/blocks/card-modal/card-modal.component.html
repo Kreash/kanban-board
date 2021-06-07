@@ -14,7 +14,8 @@
         Наименование
       </label>
       <input id="modal-title-input" type="text"
-      [(ngModel)]='modalOptions.title' maxlength="64">
+      [(ngModel)]='modalOptions.title' maxlength="64"
+      disabled="{{(this.modalOptions.status === 'in-progress' || this.modalOptions.status === 'done')? 'disables' : false}}">
       <span class="card-modal__title-counter">{{modalOptions.title.length}}\64</span>
     </div>
 
@@ -23,28 +24,40 @@
         Описание
       </label>
       <textarea name="" id="modal-description-textarea" cols="30" rows="10"
-      [(ngModel)]='modalOptions.description'></textarea>
+      [(ngModel)]='modalOptions.description'
+      disabled="{{(this.modalOptions.status === 'in-progress' || this.modalOptions.status === 'done')? 'disables' : false}}"></textarea>
     </div>
 
     <div class="card-modal__field card-modal__field_status">
       <label class="card-modal__label" for="modal-status-select">
         Состояние задачи
       </label>
-      <app-select
+      <input id="modal-status-select" disabled type="text"
+      *ngIf="this.modalOptions.status === 'done';else inputDisable"
+      value = 'Готово'>
+      <ng-template #inputDisable>
+        <app-select
         [optionsList]='selectOptions'
         [disabled]='disabledSelect'
         (selectedEvent) = 'changeStatus($event)'>
       </app-select>
+      </ng-template>
+
     </div>
 
 
     <div class="card-modal__controls">
-      <app-btn-simple [theme]="'white'" (btnClick)='close()'>
-        Отменить
+      <app-btn-simple *ngIf="action === 'show-task';else showTsk" (btnClick)="close()">
+        Закрыть
       </app-btn-simple>
-      <app-btn-simple (btnClick)='save()'>
-        Сохранить
-      </app-btn-simple>
+      <ng-template #showTsk>
+        <app-btn-simple [theme]="'white'" (btnClick)="close()">
+          Отменить
+        </app-btn-simple>
+        <app-btn-simple (btnClick)="save()">
+          Сохранить
+        </app-btn-simple>
+      </ng-template>
     </div>
 
   </div>

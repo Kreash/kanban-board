@@ -79,6 +79,20 @@ export class AppComponent {
     this.worker.postMessage({evt: 'delete-task', id: id});
   }
 
+  editTask(evt: {action:string, cardObject:CardObject}) {
+    console.log(evt.action);
 
+    this.modalOptions = evt.cardObject
+    this.action = 'edit-task'
+    this.showModal = true;
+  }
+
+  showTask(evt: any) {
+    console.log(evt.action);
+
+    this.modalOptions = evt.cardObject
+    this.action = 'show-task'
+    this.showModal = true;
+  }
 
 }
