@@ -15,9 +15,16 @@ export class CardModalComponent implements OnInit {
 
   selectOptions: string[];
   disabledSelect: boolean;
+  currentOptions: CardObject;
+  modalTitle: string = 'Новая задача';
 
   constructor() {
     this.modalOptions = {
+      status: '',
+      title: '',
+      description: ''
+    }
+    this.currentOptions = {
       status: '',
       title: '',
       description: ''
@@ -28,20 +35,21 @@ export class CardModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.changeSelect()
+    this.currentOptions = JSON.parse(JSON.stringify(this.modalOptions));
+    this.changeSelect();
+    this.changeModalTitle()
   }
 
   close() {
-    console.log('closeModal: ', this.modalOptions);
     this.closeModal.emit();
   }
 
   save() {
-    this.saveModal.emit(this.modalOptions);
+    this.saveModal.emit(this.currentOptions);
   }
 
   changeSelect(): void {
-    const status = this.modalOptions.status
+    const status = this.currentOptions.status
     if (status === 'new') {
       this.selectOptions = ['Новая', 'Выполняется'];
     } else if (status === 'in-progress') {
@@ -52,17 +60,25 @@ export class CardModalComponent implements OnInit {
     } else {
       this.selectOptions = ['Новая'];
       this.disabledSelect = true
-      this.modalOptions.status = 'new'
+      this.currentOptions.status = 'new'
     }
   }
 
   changeStatus(evt: string) {
     if (evt === 'Новая') {
-      this.modalOptions.status = 'new'
+      this.currentOptions.status = 'new'
     } else if (evt === 'Выполняется') {
-      this.modalOptions.status = 'in-progress'
+      this.currentOptions.status = 'in-progress'
     } else if (evt === 'Готово') {
-      this.modalOptions.status = 'done'
+      this.currentOptions.status = 'done'
+    }
+  }
+
+  changeModalTitle() {
+    if (this.modalOptions.status === 'new' || this.modalOptions.status === 'in-progress') {
+      this.modalTitle = 'Редактирование задачи'
+    } else if (this.modalOptions.status === 'done') {
+      this.modalTitle = 'Просмотр задачи'
     }
   }
 

@@ -1,10 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CardObject } from '../../app.component';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
-// interface CardObject {
-//   title: string;
-// }
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -14,7 +10,6 @@ export class CardComponent implements OnInit {
 
   @Input() cardObject: CardObject;
   @Output() cardEvent = new EventEmitter();
-
   // shortDescription: string = '';
 
   constructor() {
@@ -22,7 +17,6 @@ export class CardComponent implements OnInit {
       title: '',
       description: ''
     }
-
    }
 
   ngOnInit(): void {
@@ -40,6 +34,5 @@ export class CardComponent implements OnInit {
   emitCLick(str: string) {
     this.cardEvent.emit({action: str, cardObject: this.cardObject});
   }
-
 
 }

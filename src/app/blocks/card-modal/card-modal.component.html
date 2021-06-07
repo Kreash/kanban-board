@@ -2,7 +2,7 @@
 
   <div class="card-modal__head
   {{modalOptions.status ? 'card-modal__head_' + modalOptions.status : 'card-modal__head_new'}}">
-    Новая задача
+    {{this.modalTitle}}
     <span class="card-modal__exit-icon" (click)='close()'></span>
   </div>
 
@@ -14,9 +14,9 @@
         Наименование
       </label>
       <input id="modal-title-input" type="text"
-      [(ngModel)]='modalOptions.title' maxlength="64"
+      [(ngModel)]='currentOptions.title' maxlength="64"
       disabled="{{(this.modalOptions.status === 'in-progress' || this.modalOptions.status === 'done')? 'disables' : false}}">
-      <span class="card-modal__title-counter">{{modalOptions.title.length}}\64</span>
+      <span class="card-modal__title-counter">{{currentOptions.title.length}}\64</span>
     </div>
 
     <div class="card-modal__field card-modal__field_description">
@@ -24,7 +24,7 @@
         Описание
       </label>
       <textarea name="" id="modal-description-textarea" cols="30" rows="10"
-      [(ngModel)]='modalOptions.description'
+      [(ngModel)]='currentOptions.description'
       disabled="{{(this.modalOptions.status === 'in-progress' || this.modalOptions.status === 'done')? 'disables' : false}}"></textarea>
     </div>
 

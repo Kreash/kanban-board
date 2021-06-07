@@ -17,30 +17,19 @@
     &:not(:last-child) {
       border-right: 1px solid #DFDFDF;
     }
-
   }
 
   &__column_new {
-
-
-
-
-
     #{$self}__column-head {
       background-color: $yellow;
     }
   }
-
   &__column_in-progress {
-
-
     #{$self}__column-head {
       background-color: $red;
     }
   }
   &__column_done {
-
-
     #{$self}__column-head {
       background-color: $green;
     }
@@ -78,12 +67,14 @@
   &__card-wrap {
     height: max-content;
     width: max-content;
-
-
   }
 
 }
 
+:host ::ng-deep .card {
+  margin-right: 30px;
+  margin-bottom: 24px;
+}
 
 // ===== drag-and-drop styles =====
 .cdk-drag-preview {
@@ -110,8 +101,3 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 // ===== drag-and-drop styles end =====
-
-:host ::ng-deep .card {
-  margin-right: 30px;
-  margin-bottom: 24px;
-}
