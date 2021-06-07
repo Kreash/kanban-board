@@ -1,75 +1,53 @@
 <div class="board__columns">
+
   <div class="board__column board__column_new">
-    <div class="board__column-head">Новые {{new.length}}</div>
-
-
+    <div class="board__column-head">Новые {{newCards.length}}</div>
 
     <div class="board__column-body"
-    cdkDropListOrientation="horizontal"
+      cdkDropListOrientation="horizontal"
+      cdkDropList
+      #newList="cdkDropList"
+      [cdkDropListData]="newCards"
+      [cdkDropListConnectedTo]="[inProgressList]"
+      (cdkDropListDropped)="drop($event)">
 
-
-    cdkDropList
-    #newList="cdkDropList"
-    [cdkDropListData]="new"
-    [cdkDropListConnectedTo]="[inProgressList]"
-    (cdkDropListDropped)="drop($event)">
-
-      <div class="board__card-wrap" *ngFor="let item of new" >
-        <app-card [cardObject] = 'item'></app-card>
+      <div class="board__card-wrap" *ngFor="let item of newCards" >
+        <app-card [cardObject] = "item" (cardEvent)="cardEvent($event)"></app-card>
       </div>
     </div>
-
-
-
-    <!-- <div class="board__column-body">
-      <div class="board__card-wrap">
-        <app-card></app-card>
-      </div>
-      <div class="board__card-wrap">
-        <app-card></app-card>
-      </div>
-      <div class="board__card-wrap">
-        <app-card></app-card>
-      </div>
-    </div> -->
-
   </div>
+
   <div class="board__column board__column_in-progress">
-    <div class="board__column-head">Выполняются {{inProgress.length}}</div>
-
+    <div class="board__column-head">Выполняются {{inProgressCards.length}}</div>
 
       <div class="board__column-body"
-      cdkDropListOrientation="horizontal"
-      cdkDropList
-      #inProgressList="cdkDropList"
-      [cdkDropListData]="inProgress"
-      [cdkDropListConnectedTo]="[doneList]"
-      (cdkDropListDropped)="drop($event)">
+        cdkDropListOrientation="horizontal"
+        cdkDropList
+        #inProgressList="cdkDropList"
+        [cdkDropListData]="inProgressCards"
+        [cdkDropListConnectedTo]="[doneList]"
+        (cdkDropListDropped)="drop($event)">
 
-        <div class="board__card-wrap" *ngFor="let item of inProgress">
-          <app-card [cardObject] = 'item'></app-card>
+        <div class="board__card-wrap" *ngFor="let item of inProgressCards">
+          <app-card [cardObject] = "item" (cardEvent)="cardEvent($event)"></app-card>
         </div>
       </div>
-
-
-
   </div>
+
   <div class="board__column board__column_done">
-    <div class="board__column-head">Готовы {{done.length}}</div>
-
+    <div class="board__column-head">Готовы {{doneCards.length}}</div>
 
       <div class="board__column-body"
-      cdkDropListOrientation="horizontal"
-      cdkDropList
-      #doneList="cdkDropList"
-      [cdkDropListData]="done"
-      (cdkDropListDropped)="drop($event)">
+        cdkDropListOrientation="horizontal"
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="doneCards"
+        (cdkDropListDropped)="drop($event)">
 
-        <div class="board__card-wrap" *ngFor="let item of done">
-          <app-card [cardObject] = 'item'></app-card>
+        <div class="board__card-wrap" *ngFor="let item of doneCards">
+          <app-card [cardObject] = "item" (cardEvent)="cardEvent($event)"></app-card>
         </div>
       </div>
-
-
   </div>
+
 </div>

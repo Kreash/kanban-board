@@ -3,7 +3,7 @@
 .card {
   $self: &;
 
-  height: 188px;
+  // height: 188px;
   width: 182px;
   box-shadow: 0px 2px 2px rgba(155, 166, 178, 0.25);
   border-radius: 4px;
@@ -46,6 +46,8 @@
 
 
   &__main {
+    height: 139px;
+
     background-color: white;
 
     padding: 14px 16px 12px 11px;

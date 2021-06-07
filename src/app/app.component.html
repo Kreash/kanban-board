@@ -5,7 +5,14 @@
 </header>
 
 <main class="main">
-  <app-board></app-board>
+  <app-board
+    [сardsArrs]='cardsArrs'
+    [newCards] = 'newCards'
+    [inProgressCards] = 'inProgressCards'
+    [doneCards] = 'doneCards'
+    (changeStatusTask)=changeStatusTask($event)
+    (deleteTask)=deleteTask($event)>
+  </app-board>
 </main>
 
 <div class="modal-wrap" *ngIf="showModal">

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ModalOptions } from '../../app.component';
+import { CardObject } from '../../app.component';
 
 @Component({
   selector: 'app-card-modal',
@@ -8,7 +8,7 @@ import { ModalOptions } from '../../app.component';
 })
 export class CardModalComponent implements OnInit {
 
-  @Input() modalOptions: ModalOptions;
+  @Input() modalOptions: CardObject;
   @Input() action: string;
   @Output() closeModal = new EventEmitter();
   @Output() saveModal = new EventEmitter();

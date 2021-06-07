@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CardObject } from '../board/board.component'
+import { CardObject } from '../../app.component';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 // interface CardObject {
@@ -18,7 +18,7 @@ export class CardComponent implements OnInit {
   constructor() {
     this.cardObject = {
       title: '',
-      id: 0
+      description: ''
     }
    }
 

@@ -1,51 +1,29 @@
 /// <reference lib="webworker" />
 
 addEventListener('message', ({ data }) => {
-  let response = `worker response to ${data}`;
-
-
-
-
   const openRequest = createDB();
-
-
 
   // Если создаём задачу
   if (data.evt === 'new-task') {
-    response = 'new task created'
-
-
-
     openRequest.addEventListener('success', () => {
       const db = openRequest.result
 
       const transaction = db.transaction('tasks', 'readwrite')
       const tasks = transaction.objectStore('tasks')
-
       const request = tasks.add(data.taskObject);
 
       request.addEventListener('success', () => {
-        // console.log('задача создана и помещена в базу данных!')
-        postMessage('задача создана и помещена в базу данных!');
 
         const transaction = db.transaction('tasks', 'readonly')
         const tasks = transaction.objectStore('tasks')
-        // console.log('объект базы: ', tasks.getAll())
         const request = tasks.getAll()
+
         request.addEventListener('success', (data) => {
-          console.log('таски дай: ', request.result)
-          postMessage(request.result);
+          const filtredTasks = filterTasks(request.result);
+          postMessage(filtredTasks);
         })
       })
-
-
-      // console.log('db: ', db);
     })
-
-
-
-
-
 
   // Если изменяем задачу
   } else if (data.evt === 'edit-task') {
@@ -53,21 +31,75 @@ addEventListener('message', ({ data }) => {
 
 
 
-    postMessage(response);
+
+  // Если изменяем только статус задачи
+  } else if (data.evt === 'edit-status-task') {
+
+    if (data.taskAndColumn.nextColumnId === 'cdk-drop-list-1') {
+      data.taskAndColumn.taskObject.status = 'in-progress'
+    } else if (data.taskAndColumn.nextColumnId === 'cdk-drop-list-2') {
+      data.taskAndColumn.taskObject.status = 'done'
+    }
+
+    openRequest.addEventListener('success', () => {
+      const db = openRequest.result
+
+      const transaction = db.transaction('tasks', 'readwrite')
+      const tasks = transaction.objectStore('tasks')
+      const request = tasks.put(data.taskAndColumn.taskObject);
+
+      request.addEventListener('success', () => {
+
+        const transaction = db.transaction('tasks', 'readonly')
+        const tasks = transaction.objectStore('tasks')
+        const request = tasks.getAll()
+
+        request.addEventListener('success', () => {
+          const filtredTasks = filterTasks(request.result);
+          postMessage(filtredTasks);
+        })
+      })
+    })
+
   // Если удаляем задачу
   } else if (data.evt === 'delete-task')  {
 
+    openRequest.addEventListener('success', () => {
+      const db = openRequest.result
 
+      const transaction = db.transaction('tasks', 'readwrite')
+      const tasks = transaction.objectStore('tasks')
+      const request = tasks.delete(data.id);
 
+      request.addEventListener('success', () => {
 
-    postMessage(response);
+        const transaction = db.transaction('tasks', 'readonly')
+        const tasks = transaction.objectStore('tasks')
+        const request = tasks.getAll()
+
+        request.addEventListener('success', () => {
+          const filtredTasks = filterTasks(request.result);
+          postMessage(filtredTasks);
+        })
+      })
+    })
+
   // Если читаем базу
   } else if (data.evt === 'read-tasks') {
 
+    openRequest.addEventListener('success', () => {
+      const db = openRequest.result
 
+      const transaction = db.transaction('tasks', 'readonly')
+      const tasks = transaction.objectStore('tasks')
+      const request = tasks.getAll()
 
+      request.addEventListener('success', () => {
+        const filtredTasks = filterTasks(request.result);
+        postMessage(filtredTasks);
+      })
+    })
 
-    postMessage(response);
   // Если не нашлось действие выдать ошибку
   } else {
     throw new Error('Такого действия нет!')
@@ -98,4 +130,27 @@ function createDB() {
   })
 
   return openRequest;
+}
+
+interface Task {
+  status: string,
+  title: string,
+  description?: string
+}
+
+function filterTasks(allTasks: Task[]) {
+
+  const resultArr: (Task[])[] = [[],[],[]];
+
+  allTasks.forEach((task: Task) => {
+    if (task.status === 'new') {
+      resultArr[0].push(task);
+    } else if (task.status === 'in-progress') {
+      resultArr[1].push(task);
+    } else if (task.status === 'done') {
+      resultArr[2].push(task);
+    }
+  });
+
+  return resultArr;
 }
